@@ -17,9 +17,13 @@ def mask_account_card(account_or_card_number: str) -> str:
         else:
             name_of_card_or_account += symbol
     if name_of_card_or_account != "Счет ":
-        card_or_account_mask = get_mask_card_number(number_value_of_card_or_account)
+        card_or_account_mask = get_mask_card_number(
+            number_value_of_card_or_account
+        )
     else:
-        card_or_account_mask = get_mask_account(number_value_of_card_or_account)
+        card_or_account_mask = get_mask_account(
+            number_value_of_card_or_account
+        )
 
     return name_of_card_or_account + card_or_account_mask
 
