@@ -6,19 +6,27 @@ from src.widget import get_date, mask_account_card
 @pytest.mark.parametrize(
     "account_or_card_number, expected_result",
     [
-        ("Visa Platinum 7000792289606361", "Visa Platinum 7000 79** **** 6361"),
+        (
+            "Visa Platinum 7000792289606361",
+            "Visa Platinum 7000 79** **** 6361",
+        ),
         ("Счет 73654108430135874305", "Счет **4305"),
         ("Mastercard 7000792289606361", "Mastercard 7000 79** **** 6361"),
         ("", ""),
     ],
 )
-def test_mask_account_card(account_or_card_number: str, expected_result: str) -> None:
-    """Функция тестирует mask_account_card, стандартные разного вида данные на вход, формат str, и подача постой строки на вход"""
+def test_mask_account_card(
+    account_or_card_number: str, expected_result: str
+) -> None:
+    """Функция тестирует mask_account_card,
+    стандартные разного вида данные на вход,
+    формат str, и подача постой строки на вход"""
     assert mask_account_card(account_or_card_number) == expected_result
 
 
 def test_wrong_data_mask_account_card() -> None:
-    """Функция тестирует mask_account_card, на вход подаются данные формата int"""
+    """Функция тестирует mask_account_card,
+    на вход подаются данные формата int"""
     with pytest.raises(ValueError) as exc_info:
         mask_account_card(123547467)
 
@@ -35,5 +43,6 @@ def test_wrong_data_mask_account_card() -> None:
     ],
 )
 def test_get_date(iso_date: str, expected_result: str) -> None:
-    """Функция тестирует get_date функцию со стандартными и не верными форматами данных"""
+    """Функция тестирует get_date функцию
+    со стандартными и не верными форматами данных"""
     assert get_date(iso_date) == expected_result
