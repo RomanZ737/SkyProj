@@ -333,6 +333,7 @@ def input_filter_by_currency_and_transaction_descriptions() -> list:
         }
     ]
 
+
 @pytest.fixture
 def output_usd_filter_by_currency() -> list:
     """Фукстура возвращает выходные данные
@@ -385,6 +386,7 @@ def output_usd_filter_by_currency() -> list:
             "to": "Visa Platinum 8990922113665229"
         },
     ]
+
 
 @pytest.fixture
 def output_transaction_descriptions() -> list:

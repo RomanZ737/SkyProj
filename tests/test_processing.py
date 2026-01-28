@@ -3,7 +3,8 @@ from src.processing import filter_by_state, sort_by_date
 
 def test_filter_by_state_1(
     input_data_filter_by_state: list,
-    output_data_filter_by_state_executed: list) -> None:
+    output_data_filter_by_state_executed: list
+) -> None:
     """Функция тестирует функцию filter_by_state с условием EXECUTED
     и подачу на вход пустого списка"""
     assert (
