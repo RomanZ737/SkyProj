@@ -29,7 +29,7 @@ def test_transaction_descriptions(
 
 
 @pytest.mark.parametrize(
-    "num_start, num_end, expected_result",
+    "start, stop, expected_result",
     [
         (0, 0, ["0000 0000 0000 0000"]),
         (
@@ -57,7 +57,7 @@ def test_transaction_descriptions(
         (5, 1, []),
     ],
 )
-def test_card_number_generator(num_start: int, num_end: int, expected_result: list) -> None:
+def test_card_number_generator(start: int, stop: int, expected_result: list) -> None:
     """Тестируем функцию (генератор) card_number_generator,
     стандартные входные данные и пустой список данных"""
-    assert list(card_number_generator(num_start, num_end)) == expected_result
+    assert list(card_number_generator(start, stop)) == expected_result
