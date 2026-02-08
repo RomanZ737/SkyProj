@@ -9,13 +9,14 @@ def log(filename: Optional[str] = None) -> Callable:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
             try:
-                func(*args, **kwargs)
+                result = func(*args, **kwargs)
                 log_message = f"{func.__name__} ok\n\n"
                 if filename:
                     with open(filename, 'a') as file:
                         file.write(log_message)
                 else:
                     print(log_message)
+                return result
             except Exception as e:
                 log_message = f"{func.__name__}  error: {e}. Inputs: {args}{kwargs}\n\n"
                 if filename:
