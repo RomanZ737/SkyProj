@@ -12,6 +12,15 @@ def json_loader(file_path: str) -> Any:
         with open(file_path, encoding="utf-8") as json_file:
             data = json.load(json_file)
             return data
-    except Exception as e:
+    except FileNotFoundError as e:
+        print("Ошибка: ", e)
+        return []
+    except json.JSONDecodeError as e:
+        print("Ошибка: ", e)
+        return []
+    except TypeError as e:
+        print("Ошибка: ", e)
+        return []
+    except KeyError as e:
         print("Ошибка: ", e)
         return []
