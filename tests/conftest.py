@@ -360,3 +360,13 @@ def data_for_json_file_open() -> str:
     для json_file_open
     """
     return """{"id": 441945886}"""
+
+
+@pytest.fixture
+def data_for_csv_and_xlsx_file_open() -> str:
+    """
+    Фукстура возвращает выходные данные
+    для csv и xlsx фалов
+    """
+    return """id;state;
+            650703;EXECUTED;"""
