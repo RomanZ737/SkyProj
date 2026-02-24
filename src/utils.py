@@ -1,6 +1,8 @@
 import json
 import logging
 import os
+import re
+from collections import Counter
 from typing import Any
 
 LOG_FILE_PATH = os.path.join(os.path.dirname(__file__), "../logs/")
@@ -40,3 +42,28 @@ def json_loader(file_path: str) -> Any:
         logger.error(f"Ошибка: {e}")
         print("Ошибка: ", e)
         return []
+
+
+def process_bank_search(data: list[dict], search: str) -> list[dict]:
+    """
+    Принимает список словарей с данными о банковских операциях и строку поиска.
+    Возвращает список словарей, у которых в описании есть данная строка.
+    """
+    result = []
+    for transaction in data:
+        if re.search(search, transaction["description"]):
+            result.append(transaction)
+    return result
+
+
+def process_bank_operations(data: list[dict], categories: list) -> dict:
+    """
+    Принимает список словарей с данными о банковских операциях и список с категорий операций.
+    Возвращает словарь в котором ключи - это названия категорий, а значения
+    это количество операций в каждой категории
+    """
+    result = []
+    for transaction in data:
+        if transaction["description"] in categories:
+            result.append(transaction["description"])
+    return Counter(result)
