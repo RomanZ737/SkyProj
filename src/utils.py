@@ -51,8 +51,12 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
     """
     result = []
     for transaction in data:
-        if re.search(search, transaction["description"]):
-            result.append(transaction)
+        try:
+            pattern = re.compile(search, flags=re.IGNORECASE)
+            if re.search(pattern, transaction["description"]):
+                result.append(transaction)
+        except KeyError:
+            pass
     return result
 
 
@@ -64,6 +68,9 @@ def process_bank_operations(data: list[dict], categories: list) -> dict:
     """
     result = []
     for transaction in data:
-        if transaction["description"] in categories:
-            result.append(transaction["description"])
+        try:
+            if transaction["description"] in categories:
+                result.append(transaction["description"])
+        except KeyError:
+            pass
     return Counter(result)
