@@ -53,7 +53,7 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
     for transaction in data:
         try:
             pattern = re.compile(search, flags=re.IGNORECASE)
-            if re.search(pattern, transaction["description"]):
+            if pattern.search(transaction["description"]):
                 result.append(transaction)
         except KeyError:
             pass
